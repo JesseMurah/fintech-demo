@@ -1,0 +1,32 @@
+model
+  schema 1.1
+
+type user
+
+type team
+  relations
+    define member: [user]
+    define manager: [user]
+    define can_manage: manager
+
+type loan
+  relations
+    define borrower: [user]
+    define credit_reviewer: [team#member]
+    define risk_reviewer: [team#member]
+    define approver: [team#member]
+    define can_view: borrower or credit_reviewer or risk_reviewer or approver
+    define can_review_credit: credit_reviewer
+    define can_review_risk: risk_reviewer
+    define can_approve: approver
+    define can_flag: risk_reviewer or approver
+
+type disbursement
+  relations
+    define initiator: [team#member]
+    define approver: [team#member]
+    define parent: [loan]
+    define can_initiate: initiator
+    define can_approve: approver or can_approve from parent
+    define can_view: initiator or approver or can_view from parent
+    define can_cancel: approver

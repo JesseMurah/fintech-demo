@@ -1,0 +1,9 @@
+services:
+  openfga:
+    image: openfga/openfga:latest
+    command: run
+    ports:
+      - "8081:8080"   # HTTP API — app calls http://localhost:8081
+      - "3000:3000"   # Playground — read-only visual aid (ADR-0001)
+    environment:
+      - OPENFGA_PLAYGROUND_ENABLED=true

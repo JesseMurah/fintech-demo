@@ -1,0 +1,28 @@
+meta {
+  name: 3. Approve A - FGA
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{base_url}}/fga/payouts/D1/approve
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+vars:pre-request {
+  base_url: http://localhost:8080
+}
+
+assert {
+  res.status: eq 200
+}
+
+docs {
+  FGA-guarded approve of disbursement A. Live check: kwame -> finance -> loan -> A.
+  Expected: 200 (before fire).
+}

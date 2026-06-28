@@ -1,0 +1,28 @@
+meta {
+  name: 2. Approve A - JWT
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{base_url}}/jwt/payouts/D1/approve
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+vars:pre-request {
+  base_url: http://localhost:8080
+}
+
+assert {
+  res.status: eq 200
+}
+
+docs {
+  JWT-guarded approve of disbursement A. Authorizes on the token's role claim only.
+  Expected: 200.
+}

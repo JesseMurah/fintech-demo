@@ -1,0 +1,28 @@
+meta {
+  name: 6. Fire Kwame
+  type: http
+  seq: 6
+}
+
+post {
+  url: {{base_url}}/admin/fire/kwame
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+vars:pre-request {
+  base_url: http://localhost:8080
+}
+
+assert {
+  res.status: eq 200
+}
+
+docs {
+  The single fire action: sets active=false in H2 AND deletes
+  `user:kwame member team:finance` in OpenFGA. One event, both effects.
+}

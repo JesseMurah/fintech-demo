@@ -1,0 +1,28 @@
+meta {
+  name: 7. Approve A - JWT (bug)
+  type: http
+  seq: 7
+}
+
+post {
+  url: {{base_url}}/jwt/payouts/D1/approve
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+vars:pre-request {
+  base_url: http://localhost:8080
+}
+
+assert {
+  res.status: eq 200
+}
+
+docs {
+  Same token, after fire. JWT path never asked the DB or the graph.
+  Expected: 200 — THE BUG. Stale token still works.
+}

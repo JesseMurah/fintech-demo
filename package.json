@@ -1,0 +1,14 @@
+{
+  "name": "fintech-demo-slides",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "slidev --open",
+    "build": "slidev build",
+    "export": "slidev export"
+  },
+  "dependencies": {
+    "@slidev/cli": "^52.16.0",
+    "slidev-theme-neversink": "^0.4.1"
+  }
+}

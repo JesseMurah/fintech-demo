@@ -1,0 +1,28 @@
+meta {
+  name: 4. Approve B - FGA
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{base_url}}/fga/payouts/D2/approve
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+vars:pre-request {
+  base_url: http://localhost:8080
+}
+
+assert {
+  res.status: eq 200
+}
+
+docs {
+  FGA-guarded approve of disbursement B. Same path as A, different leaf.
+  Sets up the cascade. Expected: 200 (before fire).
+}

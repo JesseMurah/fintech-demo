@@ -1,0 +1,28 @@
+meta {
+  name: 5. Show Kwame
+  type: http
+  seq: 5
+}
+
+get {
+  url: {{base_url}}/admin/users/kwame
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+vars:pre-request {
+  base_url: http://localhost:8080
+}
+
+assert {
+  res.status: eq 200
+}
+
+docs {
+  Baseline DB state. Expected: active: true.
+  Re-run after Fire (step 6) to show active: false — the DB knows, the token doesn't.
+}

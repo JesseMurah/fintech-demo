@@ -1,0 +1,35 @@
+meta {
+  name: 1. Login
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{base_url}}/auth/login
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "userId": "kwame"
+  }
+}
+
+vars:pre-request {
+  base_url: http://localhost:8080
+}
+
+vars:post-response {
+  token: res.body.token
+}
+
+assert {
+  res.status: eq 200
+}
+
+docs {
+  Mints a JWT for Kwame and captures it into the `token` env var.
+  Run this FIRST — every other request reuses {{token}}.
+  Adjust the body and the `res.body.token` path to match your /auth/login contract.
+}
